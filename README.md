@@ -25,6 +25,8 @@ powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | ie
 
 ### 配置文件
 
+优先使用下面这种配置方式
+
 ```json
 {
     "mcpServers": {
