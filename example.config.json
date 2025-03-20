@@ -1,16 +1,19 @@
 {
-    "yiGmMk/mcp-server": {
-        "command": "uv",
-        "args": [
-            "run",
-            "/xxx/mcp-server/main.py"
-        ],
-        "env": {
-            "VIRTUAL_ENV": "/xxx/mcp-server/.venv",
-            "JINA_API_KEY": "jina_api_key,请从https://jina.ai/reader获取",
-            "PYTHONIOENCODING": "utf-8"
-        },
-        "disabled": false,
-        "autoApprove": []
+    "mcpServers": {
+        "yiGmMk/mcp-server": {
+            "command": "uv",
+            "args": [
+                "--directory",
+                "/path/to/your/mcp-server",
+                "run",
+                "main.py"
+            ],
+            "env": {
+                "JINA_API_KEY": "jina_api_key,请从https://jina.ai/reader获取",
+                "PYTHONIOENCODING": "utf-8"
+            },
+            "disabled": false,
+            "autoApprove": []
+        }
     }
 }

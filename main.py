@@ -4,9 +4,8 @@ from mcp.server.fastmcp import FastMCP
 from pydantic import Field
 
 # Create an MCP server
-mcp = FastMCP("fetch-tools")
+mcp = FastMCP(name="ai-tools", description="AI 工具集合", version="0.1.0")
 
-# Example: Accessing a secret from the client configuration
 JINA_API_KEY = os.environ.get("JINA_API_KEY")
 if not JINA_API_KEY:
     print("JINA_API_KEY not found in environment variables!")
@@ -37,7 +36,7 @@ def fetch(url: str = Field(description="需要抓取的网页url")) -> str:
 
 @mcp.tool(
     name="search",
-    description="使用 s.jina.ai 搜索网络并获取 SERP,Reader 就会搜索网络并返回前五个结果及其 URL 和内容，每个结果都以干净、LLM 友好的文本显示。这样，您就可以始终让您的 LLM 保持最新状态，提高其真实性，并减少幻觉。",
+    description="使用 s.jina.ai 搜索网络并获取 SERP,Reader 就会搜索网络并返回前五个结果及其 URL 和内容，每个结果都以干净、LLM 友好的文本显示。这样，您就可以始终让您的 LLM 保持最新状态，提高其真实性，并减少幻觉。不支持用作翻译",
 )
 def search(q: str = Field(description="搜索关键词")) -> str:
     if not JINA_API_KEY:
