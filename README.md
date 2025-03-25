@@ -86,3 +86,9 @@ powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | ie
 
 [jina.ai](https://jina.ai/)提供的各种工具,如搜索,读取网页...
 
+## TODO
+
+- [ ] 发布到 https://smithery.ai/server/@yiGmMk/mcp-server/tools
+  dockerfile构建成功,但是mcp服务在docker中运行后立即退出,导致无法使用,相关issue:
+  1.[MCP within a Docker Container exits, regardless of lifespan](https://github.com/modelcontextprotocol/python-sdk/issues/228)
+  2. [ifespan shuts as soon as it opens](https://github.com/modelcontextprotocol/python-sdk/issues/223)
