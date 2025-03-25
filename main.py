@@ -4,7 +4,13 @@ from mcp.server.fastmcp import FastMCP
 from pydantic import Field
 
 # Create an MCP server
-mcp = FastMCP(name="ai-tools", description="AI 工具集合", version="0.1.0")
+mcp = FastMCP(
+    name="ai-tools",
+    description="AI 工具集合",
+    version="0.1.0",
+    host="0.0.0.0",  # 添加 host 参数
+    port=8000,  # 添加 port 参数
+)
 
 JINA_API_KEY = os.environ.get("JINA_API_KEY")
 if not JINA_API_KEY:
@@ -57,9 +63,15 @@ def search(q: str = Field(description="搜索关键词")) -> str:
 
 
 def main():
-    print("Hello from mcp-server!")
-    mcp.run()
+    try:
+        # 服务启动成功时，代码会阻塞在此处，不会执行后续 print
+        mcp.run()
+    except Exception as e:
+        # 捕获服务启动异常
+        print(f"Error starting server: {e}", flush=True)
+        raise  # 抛出异常确保容器退出并显示错误
 
 
 if __name__ == "__main__":
+    print("Hello from mcp-server!", flush=True)
     main()
