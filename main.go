@@ -107,6 +107,7 @@ func main() {
 	s.AddTool(searchTool, searchHandler)
 
 	// Start the stdio server
+	fmt.Println("Server started")
 	if err := server.ServeStdio(s); err != nil {
 		fmt.Printf("Server error: %v\n", err)
 	}
