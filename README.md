@@ -1,8 +1,18 @@
 # mcp-server
 
+[![smithery badge](https://smithery.ai/badge/@yiGmMk/mcp-server)](https://smithery.ai/server/@yiGmMk/mcp-server)
+
 学习写 mcp server
 
 ## 安装 (cline)
+
+### Installing via Smithery
+
+To install mcp-server for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@yiGmMk/mcp-server):
+
+```bash
+npx -y @smithery/cli install @yiGmMk/mcp-server --client claude
+```
 
 ### 前置依赖
 
