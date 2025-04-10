@@ -62,6 +62,25 @@ def search(q: str = Field(description="搜索关键词")) -> str:
         return f"Error searching: {e}"
 
 
+from prompt import common, prompt1, prompt2, prompt3
+
+
+@mcp.prompt(name="prompt optimization", description="优化提示词")
+def optimize_prompt(content: str, usage: str = "通用") -> str:
+    msg = ""
+    if usage == "通用":
+        msg = common
+    elif usage == "带格式输出":
+        msg = prompt1
+    elif "带建议的优化提示词":
+        msg = prompt2
+    elif usage == "指令型提示词的优化，优化的同时遵循原指令":
+        msg = prompt3
+    else:
+        msg = common
+    return f"{msg}{content}"
+
+
 def main():
     try:
         # 服务启动成功时，代码会阻塞在此处，不会执行后续 print
