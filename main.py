@@ -3,7 +3,7 @@ import os
 from mcp.server.fastmcp import FastMCP
 from pydantic import Field
 from gpt import call_openai
-from prompt import translate
+from prompt import translate as translatePrompt
 
 # Create an MCP server
 mcp = FastMCP(
@@ -73,7 +73,7 @@ def translate(content: str = Field(description="需要翻译的文本")) -> str:
     if not GOOGLE_AI_STUDIO_KEY:
         return "API_KEY is not configured."
     try:
-        res = call_openai(translate, content)
+        res = call_openai(translatePrompt, content)
         return res
     except Exception as e:
         return f"Error translating: {e}"
@@ -110,4 +110,5 @@ def main():
 
 if __name__ == "__main__":
     print("Hello from mcp-server!", flush=True)
+    # print(translate("hello world"))
     main()
