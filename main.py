@@ -2,6 +2,8 @@
 import os
 from mcp.server.fastmcp import FastMCP
 from pydantic import Field
+from gpt import call_openai
+from prompt import translate
 
 # Create an MCP server
 mcp = FastMCP(
@@ -18,6 +20,7 @@ if not JINA_API_KEY:
 else:
     print("JINA_API_KEY:", JINA_API_KEY)
 
+GOOGLE_AI_STUDIO_KEY = os.environ.get("GOOGLE_AI_STUDIO_KEY")
 
 # Add an addition tool
 import requests
@@ -60,6 +63,20 @@ def search(q: str = Field(description="搜索关键词")) -> str:
         return response.text
     except requests.exceptions.RequestException as e:
         return f"Error searching: {e}"
+
+
+@mcp.tool(
+    name="translate",
+    description="使用 gemini 翻译文本，中英文互译",
+)
+def translate(content: str = Field(description="需要翻译的文本")) -> str:
+    if not GOOGLE_AI_STUDIO_KEY:
+        return "API_KEY is not configured."
+    try:
+        res = call_openai(translate, content)
+        return res
+    except Exception as e:
+        return f"Error translating: {e}"
 
 
 from prompt import common, prompt1, prompt2, prompt3

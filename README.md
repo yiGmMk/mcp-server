@@ -50,6 +50,7 @@ powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | ie
             ],
             "env": {
                 "JINA_API_KEY": "jina_api_key,请从https://jina.ai/reader获取",
+                "GOOGLE_AI_STUDIO_KEY": "Google AI Studio api key,请从https://aistudio.google.com/apikey获取",
                 "PYTHONIOENCODING": "utf-8"
             },
             "disabled": false,
@@ -73,6 +74,7 @@ powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | ie
             "env": {
                 "VIRTUAL_ENV": "/path/to/your/mcp-server/.venv",
                 "JINA_API_KEY": "jina_api_key,请从https://jina.ai/reader获取",
+                "GOOGLE_AI_STUDIO_KEY": "Google AI Studio api key,请从https://aistudio.google.com/apikey获取",
                 "PYTHONIOENCODING": "utf-8"
             },
             "disabled": false,
