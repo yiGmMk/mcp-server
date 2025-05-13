@@ -82,7 +82,7 @@ def translate(content: str = Field(description="需要翻译的文本")) -> str:
 
 
 @mcp.tool(
-    name="translate",
+    name="translate_deepl",
     description="使用 deepl 翻译,支持多种语言互译",
 )
 def translate_deepl(
