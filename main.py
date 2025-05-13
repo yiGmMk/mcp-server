@@ -4,6 +4,8 @@ from mcp.server.fastmcp import FastMCP
 from pydantic import Field
 from gpt import call_openai
 from prompt import translate as translatePrompt
+import requests
+import json
 
 # Create an MCP server
 mcp = FastMCP(
@@ -77,6 +79,26 @@ def translate(content: str = Field(description="需要翻译的文本")) -> str:
         return res
     except Exception as e:
         return f"Error translating: {e}"
+
+
+@mcp.tool(
+    name="translate",
+    description="使用 deepl 翻译,支持多种语言互译",
+)
+def translate_deepl(
+    content: str = Field(description="需要翻译的文本"),
+    source_lang: str = Field(
+        description="当前语言,source language,支持: AR,BG,CS,DA,DE,EL,EN-GB,EN-US,ES,ET,FI,FR,HU,ID,IT,JA,KO,LT,LV,NB,NL,PL,PT-BR,PT-PT,RO,RU,SK,SL,SV,TR,UK,ZH,ZH-HANS,ZH-HANT"
+    ),
+    target_lang: str = Field(
+        description="目标语言,target language,支持:AR,BG,CS,DA,DE,EL,EN-GB,EN-US,ES,ET,FI,FR,HU,ID,IT,JA,KO,LT,LV,NB,NL,PL,PT-BR,PT-PT,RO,RU,SK,SL,SV,TR,UK,ZH,ZH-HANS,ZH-HANT"
+    ),
+) -> str:
+    url = "https://nav.programnotes.cn/translate"
+    headers = {"Content-Type": "application/json"}
+    data = {"text": content, "source_lang": source_lang, "target_lang": target_lang}
+    response = requests.post(url, headers=headers, data=json.dumps(data))
+    return response.text
 
 
 from prompt import common, prompt1, prompt2, prompt3
